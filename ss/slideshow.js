@@ -11,7 +11,11 @@ $(document).ready(function() {
     delay = parseInt(delay) * 1000;
 
     document.title = subreddit.replace(/\+/, ' ');
-    
+
+    window.onerror = function(e) {
+        document.getElementById('errordiv').innerHTML(e.toString());
+    };
+
     loadPage({
         URL: 'https://www.reddit.com/r/'+subreddit+'.json?jsonp=jsonP',
         // URL: 'https://www.reddit.com/me/m/zantosubreddits.json?jsonp=jsonP',
@@ -118,7 +122,7 @@ function flip() {
 function showNext() {
     var current = $('.active');
     var next = current.next();
-    
+
     if (next.length < 1) {
         next = $('.slide:first');
         console.log('RESTART');
